@@ -17,9 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
-<audio class="audio" id="audioPlayer" autoplay loop preload="auto">
+<audio class="audio" id="audioPlayer"  loop preload="auto">
     <source src="assets/music2.mp3" type="audio/mpeg">
-
+    
 </audio>
 <div class="container">
 
@@ -86,7 +86,7 @@
                         Дата рождение: известно <br>
                         Место работы: кровать <br>
                         Должность: студент <br>
-                        Занятие: Лучший член команды, Разроботчик, Тестеровщик, Сценарист, Режиссер, Политик, Лидер и
+                        Занятие: Лучший член команды, Разработчик, Тестеровщик, Сценарист, Режиссер, Политик, Лидер и
                         Борец <br>
                         Описание: <br>
 
@@ -156,7 +156,7 @@
 
                 <div class="text-project">
                     <p class="text">
-                        <b> <a href="https://github.com/Rmgs123/WebLab2" target="_blank" id="battleshipgame-link">Battleship
+                        <b> <a href="https://battleshipgame.ru" target="_blank" id="battleshipgame-link">Battleship
                             Game</a>
                         </b> <br>
 
@@ -177,8 +177,10 @@
 
     <footer>
         <p>© 2024 Pixel Prodigies. <br>
-            <b>Gmail: </b><a href="mailto:Doctorfenichka@gmail.com" target="_blank"
-                             id="tg-link">Doctorfenichka@gmail.com</a>
+            <b>Tg: </b><a href="https://rutube.ru/video/a2ed3c8c4bfdb5136178afadbf9867af/" target="_blank"
+                             id="tg-link">@Rmgss</a>
+            <b>Tg: </b><a href="https://rutube.ru/video/a2ed3c8c4bfdb5136178afadbf9867af/" target="_blank"
+                             id="tg2-link">@minits</a>
         </p>
 
     </footer>
@@ -224,6 +226,16 @@
       if (event.key === '8') {
       changeBackground();
         changeTrack();
+
+      }
+
+      if (event.key === '1') {
+        audioPlayer.play();
+
+      }
+
+      if (event.key === '2') {
+        audioPlayer.pause();
 
       }
     });
