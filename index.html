@@ -19,9 +19,9 @@
 <body>
 <audio class="audio" id="audioPlayer"  loop preload="auto">
     <source src="assets/music2.mp3" type="audio/mpeg">
-    
+
 </audio>
-<div class="container">
+<div class="container" id="container">
 
 
     <header>
@@ -36,7 +36,7 @@
     <main>
         <section class="team-section">
             <div class="content">
-                <h2>О нашей команде</h2>
+                <h2 >О нашей команде</h2>
                 <p>
                     Pixel Prodigies — это наша университетская команда по программированию в ДВФУ,
                     которую мы создали для совместной работы над проектами в программировании.
@@ -55,7 +55,7 @@
         </section>
 
         <section class="members-section">
-            <h2>Разработчики </h2>
+            <h2 id>Разработчики </h2>
 
             <div class="image-container-wrapper">
                 <div class="image-container">
@@ -187,12 +187,14 @@
 </div>
 
 <script>
-    const musicTracks = ['assets/music2.mp3','assets/music1.mp3'];
-    let currentTrackIndex = 0;
-
     const audioPlayer = document.getElementById('audioPlayer');
+    const container = document.getElementById('container');
+    const h2Text = document.querySelector('h2');
+    const images = document.querySelectorAll('img');
 
-     const backgrounds = [
+    const musicTracks = ['assets/music2.mp3','assets/music1.mp3'];
+
+    const backgrounds = [
      {
       gradient1:'linear-gradient(to bottom,#105399 30%, #14579B 50%, #3570AC 75%, #4284D3 95%) 0 0 / 100% 97%',
       gradient2:'linear-gradient(to bottom, #008500 95%, #572508 100%) 0% 97% / 100% 100%'
@@ -201,13 +203,22 @@
       gradient2:'linear-gradient(to bottom, #008500 95%, #572508 100%) 0% 97% / 100% 100%'
     }
     ];
+
+    const textColors =['#D0CEC5','#F8EEC7'];
+    const textH2Colors =['#9ACDFF','#7FDBFF'];
+
+    let currentTrackIndex = 0;
     let currentBackgroundIndex = 0;
+    let currentColorIndex = 0;
+    let currentH2ColorIndex = 0;
+    let brightnessLevel = 1;
 
 
     function changeTrack() {
       audioPlayer.pause();
       currentTrackIndex = (currentTrackIndex + 1) % musicTracks.length;
       audioPlayer.src = musicTracks[currentTrackIndex];
+
       audioPlayer.load();
       audioPlayer.play();
     }
@@ -221,12 +232,32 @@
 
     }
 
+    function changeColorText() {
+      currentColorIndex = (currentColorIndex + 1) % textColors.length;
+      container.style.color = textColors[currentColorIndex];
+
+      currentH2ColorIndex = (currentH2ColorIndex + 1) % textH2Colors.length;
+      h2Text.style.color= textH2Colors[currentH2ColorIndex];
+
+    }
+
+    function changeImage() {
+      brightnessLevel = brightnessLevel === 1 ? 0.5 : 1;
+
+      images.forEach(img => {
+            img.style.filter = `brightness(${brightnessLevel})`;
+
+       });
+
+    }
+
 
     document.addEventListener('keydown', function(event) {
       if (event.key === '8') {
-      changeBackground();
+        changeBackground();
         changeTrack();
-
+        changeColorText();
+        changeImage()
       }
 
       if (event.key === '1') {
@@ -266,7 +297,6 @@
     }
 
     preloadMusics(importantMusics, () => {
-        document.getElementById('preloader').style.display = 'none';
         document.body.classList.remove('loading');
     });
 
