@@ -1,12 +1,8 @@
 body {
 
      background:
- linear-gradient(to bottom,#105399 30%, #14579B 50%, #3570AC 75%, #4284D3 95%) 0 0 / 100% 97%,
- linear-gradient(to bottom, #008500 95%, #572508 100%) 0% 97% / 100% 100%;
-
-
-
-
+     linear-gradient(to bottom,#105399 30%, #14579B 50%, #3570AC 75%, #4284D3 95%) 0 0 / 100% 97%,
+     #008500 0% 97% / 100% 100%;
 
     background-repeat: no-repeat;
 
@@ -32,17 +28,11 @@ body {
 
 header {
     width: 100%;
-
-
-    text-align: center;
-    border-radius: 20px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 50px;
-
 }
 
-.header_site {
+.header-site {
 
     background-clip: text;
     -webkit-background-clip: text;
@@ -57,7 +47,7 @@ header {
         3px 3px 15px rgba(0, 0, 0, 0.5);
 
     letter-spacing: 30px;
-
+    margin-bottom: 220px;
     font-size: 20;
     display: flex;
     justify-content: center;
@@ -66,7 +56,7 @@ header {
     position: relative;
 }
 
-.header_site span {
+.header-site span {
     font-family: "Pixelify Sans", sans-serif;
 
     font-size: 6em;
@@ -79,18 +69,61 @@ header {
     position: relative;
 }
 
-.header_site span:hover {
+.header-site span:hover {
     user-select: none;
     text-shadow:
-        5px 5px 0 #ffd700,
-        10px 10px 0 #ff8c00,
-        15px 15px 0 #ff4500,
+        5px 5px 0 var(--shadow-color-1,#ffd700),
+        10px 10px 0 var(--shadow-color-2,#ff8c00),
+        15px 15px 0 var(--shadow-color-3,#ff4500),
         3px 3px 15px rgba(255, 69, 0, 0.5);
 }
 
-.header_site .space {
+.header-site .space {
     display: inline-block;
     width: 40px;
+}
+
+.sky {
+    position: absolute;
+
+    overflow: visible;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+    z-index: -1;
+ }
+
+.cloud {
+    position: absolute;
+    left: -300px;
+    animation: moveClouds 1s linear infinite;
+    opacity: 0.8;
+
+
+}
+
+.cloud:nth-child(1) {top: 0%; width: 74px; height: 57px; animation-duration: 15s; animation-delay: 0s; }
+.cloud:nth-child(2) {top: 0%; width: 74px; height: 57px; animation-duration: 15s; animation-delay: 5s; }
+.cloud:nth-child(3) {top: 0%; width: 74px; height: 57px; animation-duration: 15s; animation-delay: 10s; }
+
+.cloud:nth-child(4) {top: 10%; width: 160px; height: 114px; animation-duration: 18s; animation-delay: 10s; }
+.cloud:nth-child(5) {top: 10%; width: 160px; height: 114px; animation-duration: 18s; animation-delay: 19s; }
+
+.cloud:nth-child(6) {top: 30%; width: 214px; height: 214px; animation-duration: 22s; animation-delay: 13s; }
+.cloud:nth-child(7) {top: 30%; width: 214px; height: 214px; animation-duration: 22s; animation-delay: 5s; }
+
+
+@keyframes moveClouds {
+  0% {
+        transform: translateX(0) translateY(0) ;
+
+    }
+    100% {
+        transform: translateX(130vw) translateY(0) ;
+    }
 }
 
 .team-section {
@@ -266,9 +299,7 @@ header {
     user-select: none;
 }
 
-.project:hover {
-    transform: scale(1.2);
-}
+
 
 
 .image {
@@ -329,35 +360,32 @@ h2{
     user-select: none;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1100px) {
     .header-site span {
         font-size: 3em;
     }
 }
-
-@media (max-width: 680px) {
+@media (max-width: 950px) {
     .header-site span {
-        font-size: 1.5em;
+        font-size: 2em;
     }
 }
 
-@media (max-width: 475px) {
+
+@media (max-width: 750px) {
     .header-site span {
         font-size: 1em;
     }
 }
 
-@media (max-width: 390px) {
+
+
+@media (max-width: 550px) {
     .header-site span {
-        font-size: 0.5em;
+        display: none;
     }
 }
 
-@media (max-width: 310px) {
-    .header-site span {
-        font-size: 0.3em;
-    }
-}
 
 
 

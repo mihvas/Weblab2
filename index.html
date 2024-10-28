@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 </head>
 <body>
-<audio class="audio" id="audioPlayer"  loop preload="auto">
+<audio class="audio" id="audioPlayer" loop preload="auto">
     <source src="assets/music2.mp3" type="audio/mpeg">
 
 </audio>
@@ -25,18 +25,27 @@
 
 
     <header>
-        <div class="header_site">
+        <div class="header-site" id="header-site">
             <span>P</span><span>i</span><span>x</span><span>e</span><span>l</span>
             <span class="space"></span>
             <span>P</span><span>r</span><span>o</span><span>d</span><span>i</span>
             <span>g</span><span>i</span><span>e</span><span>s</span>
         </div>
 
+        <div class="sky" id="sky">
+            <div class="cloud" style="background-image: url('assets/cloud1.png');"></div>
+            <div class="cloud" style="background-image: url('assets/cloud1.png');"></div>
+            <div class="cloud" style="background-image: url('assets/cloud1.png');"></div>
+            <div class="cloud" style="background-image: url('assets/cloud2.png');"></div>
+            <div class="cloud" style="background-image: url('assets/cloud2.png');"></div>
+            <div class="cloud" style="background-image: url('assets/cloud3.png');"></div>
+            <div class="cloud" style="background-image: url('assets/cloud3.png');"></div>
+        </div>
     </header>
     <main>
         <section class="team-section">
             <div class="content">
-                <h2 >О нашей команде</h2>
+                <h2>О нашей команде</h2>
                 <p>
                     Pixel Prodigies — это наша университетская команда по программированию в ДВФУ,
                     которую мы создали для совместной работы над проектами в программировании.
@@ -60,8 +69,8 @@
             <div class="image-container-wrapper">
                 <div class="image-container">
                     <img src="assets/roma.jpg" alt="Роман" class="image-before">
-                    <p class="text-after">
-                        Фио: Поповиченко Роман Дмитриевич <br>
+                    <p class="text-after" id="paragraph">
+                        Фио: Поповиченко Роман Дмитриевич 😁 <br>
                         Дата рождение: неизвестно <br>
                         Место работы: error 404 <br>
                         Должность: game_master_3000 <br>
@@ -178,9 +187,9 @@
     <footer>
         <p>© 2024 Pixel Prodigies. <br>
             <b>Tg: </b><a href="https://rutube.ru/video/a2ed3c8c4bfdb5136178afadbf9867af/" target="_blank"
-                             id="tg-link">@Rmgss</a>
+                          id="tg-link">@Rmgss</a>
             <b>Tg: </b><a href="https://rutube.ru/video/a2ed3c8c4bfdb5136178afadbf9867af/" target="_blank"
-                             id="tg2-link">@minits</a>
+                          id="tg2-link">@minits</a>
         </p>
 
     </footer>
@@ -191,27 +200,38 @@
     const container = document.getElementById('container');
     const h2Text = document.querySelector('h2');
     const images = document.querySelectorAll('img');
+    const spans= document.getElementById('header-site').querySelectorAll('span');
+    const clouds= document.getElementById('sky').querySelectorAll('div');
+    const paragraph = document.getElementById('paragraph');
 
     const musicTracks = ['assets/music2.mp3','assets/music1.mp3'];
 
     const backgrounds = [
      {
       gradient1:'linear-gradient(to bottom,#105399 30%, #14579B 50%, #3570AC 75%, #4284D3 95%) 0 0 / 100% 97%',
-      gradient2:'linear-gradient(to bottom, #008500 95%, #572508 100%) 0% 97% / 100% 100%'
+      gradient2:'#008500 0% 97% / 100% 100%'
       },
      { gradient1:'linear-gradient(to bottom,#0E1633 50%,#0B1535 80%, #101C44 90%) 0 0 / 100% 97%',
-      gradient2:'linear-gradient(to bottom, #008500 95%, #572508 100%) 0% 97% / 100% 100%'
+      gradient2:'#093100 0% 97% / 100% 100%'
     }
     ];
 
     const textColors =['#D0CEC5','#F8EEC7'];
     const textH2Colors =['#9ACDFF','#7FDBFF'];
+    const shadowColors = ['#ffd700', '#ff8C00', '#ff4500', '#ced6e0', '#8a9db1', '#4b6584'];
 
+    const keySequence = ['a', 'n', 'g', 'r', 'y'];
+    const keySequence1 = ['g','o','o','d'];
+
+    let currentIndex = 0;
+    let currentIndex1 = 0;
     let currentTrackIndex = 0;
     let currentBackgroundIndex = 0;
     let currentColorIndex = 0;
     let currentH2ColorIndex = 0;
     let brightnessLevel = 1;
+    let opacityCloud = 0.8;
+    let currentShadowIndex = 0;
 
 
     function changeTrack() {
@@ -251,13 +271,52 @@
 
     }
 
+    function changeClouds() {
+      opacityCloud = opacityCloud === 0.8 ? 0.3 : 0.8;
+
+      clouds.forEach(cloud => {
+            cloud.style.opacity = opacityCloud;
+
+       });
+
+    }
+
+    function changeShadowColor() {
+      currentShadowIndex = (currentShadowIndex + 3) % shadowColors.length;
+
+      spans.forEach(span => {
+            span.style.setProperty('--shadow-color-1', shadowColors[currentShadowIndex]);
+            span.style.setProperty('--shadow-color-2', shadowColors[currentShadowIndex+1]);
+            span.style.setProperty('--shadow-color-3', shadowColors[currentShadowIndex+2]);
+      });
+
+    }
+
+
+
+    function changeCharacter() {
+        const currentText = paragraph.innerText;
+
+        const newText = currentText.replace('😁', '👹');
+        paragraph.innerText = newText;
+    }
+
+    function changeCharacterGood() {
+        const currentText = paragraph.innerText;
+
+        const newText = currentText.replace('👹','😁');
+        paragraph.innerText = newText;
+    }
+
 
     document.addEventListener('keydown', function(event) {
       if (event.key === '8') {
         changeBackground();
         changeTrack();
         changeColorText();
-        changeImage()
+        changeImage();
+        changeClouds()
+        changeShadowColor();
       }
 
       if (event.key === '1') {
@@ -269,6 +328,28 @@
         audioPlayer.pause();
 
       }
+
+      if (event.key.toLowerCase() === keySequence[currentIndex]) {
+            currentIndex++;
+
+            if (currentIndex === keySequence.length) {
+                changeCharacter();
+                currentIndex = 0;
+            }
+        } else {
+            currentIndex = 0;
+        }
+
+        if (event.key.toLowerCase() === keySequence1[currentIndex1]) {
+            currentIndex1++;
+
+            if (currentIndex1 === keySequence1.length) {
+                changeCharacterGood();
+                currentIndex1 = 0;
+            }
+        } else {
+            currentIndex1 = 0;
+        }
     });
 
 </script>
